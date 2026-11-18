@@ -37,5 +37,35 @@ def main():
     print("w6 infographic collage published:", os.path.getsize(target), "bytes")
 
 
+STORIES_W6 = [
+    ("gulf", "US strike on Qeshm Island; Iran drones Bahrain and Kuwait"),
+    ("crimea", "Kerch Bridge span falls after second Ukrainian strike"),
+    ("apec", "Xi hosts APEC in Shenzhen; Putin arrives; Trump talks Thu"),
+    ("quad", "Trump Modi Albanese Takaichi meet in Manila"),
+    ("ebola", "DR Congo outbreak doubles to 11000 cases 5400 deaths"),
+    ("measles", "United States loses measles elimination status"),
+    ("crash", "Russian military plane down in Siberia, 19 dead"),
+    ("storm", "Cyclone Xavier Cat5 Cook Islands; PNG quake 6.0"),
+    ("markets", "Stocks slide; gold 3775 dollars; Brent 91.55 dollars"),
+]
+
+
+def describe_w6():
+    lines = []
+    for slug, headline in STORIES_W6:
+        lines.append(slug.upper() + ": " + headline)
+    return lines
+
+
+def validate_w6(path):
+    size = os.path.getsize(path)
+    if size <= 0:
+        raise IOError("empty infographic payload")
+    return {"stories": len(STORIES_W6), "bytes": size, "date": "2026-11-18"}
+
+
 if __name__ == "__main__":
+    for line in describe_w6():
+        print(line)
+    print(validate_w6(SOURCE))
     main()
